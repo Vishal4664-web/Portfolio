@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Data Scientist Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    :root {
+      --primary-bg: #1b1352;
+      --overlay-bg: rgba(42, 29, 84, 0.94);
+      --accent: #00c6ae;
+      --card-bg: #221a4e;
+      --box-shadow: 0 4px 22px rgba(18,14,56,0.16);
+      --text: #fff;
+      --subtitle: #b2c1e8;
+      --hover-accent: #24dac4;
+    }
+    body {
+      margin: 0;
+      background: var(--primary-bg);
+      font-family: 'Poppins', 'Segoe UI', 'Roboto', Arial, sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      width: 100%;
+      background: var(--overlay-bg);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      box-shadow: var(--box-shadow);
+    }
+    nav {
+      width: 92%;
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+    .logo {
+      letter-spacing: 2px;
+      font-size: 1.28rem;
+      font-weight: bold;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .menu-links a {
+      color: var(--text);
+      text-decoration: none;
+      margin: 0 13px;
+      font-size: 1.06rem;
+      transition: color 0.2s;
+      position: relative;
+      padding: 7px 1px;
+    }
+    .menu-links a:hover, .menu-links .active {
+      color: var(--accent);
+    }
+    .hero {
+      background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?fit=crop&w=1300&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 410px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 62px;
+      position: relative;
+    }
+    .hero-overlay {
+      background: linear-gradient(90deg, rgba(43,21,82,0.93) 54%, rgba(9,23,66,0.55) 100%);
+      box-sizing: border-box;
+      width: 570px;
+      max-width: 96vw;
+      border-radius: 13px;
+      padding: 44px 34px;
+      box-shadow: var(--box-shadow);
+    }
+    .hero-title {
+      font-size: 2.45rem;
+      letter-spacing: 0.04em;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .hero-desc {
+      font-size: 1.18rem;
+      color: var(--subtitle);
+      margin-bottom: 27px;
+      font-weight: 400;
+    }
+    .hero-btn {
+      background: var(--accent);
+      color: #0c1a41;
+      padding: 15px 33px;
+      font-size: 1.10rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 3px 18px #0005;
+      transition: background 0.22s, color 0.22s, transform 0.14s;
+      cursor: pointer;
+    }
+    .hero-btn:hover {
+      background: var(--hover-accent);
+      color: #231343;
+      transform: translateY(-2px) scale(1.03);
+    }
+    .container {
+      width: 92%;
+      max-width: 1080px;
+      margin: 0 auto 40px;
+      margin-top: 30px;
+    }
+    .section-title {
+      font-size: 2rem;
+      color: var(--text);
+      margin-bottom: 15px;
+      margin-top: 45px;
+      letter-spacing: 1px;
+    }
+    .card-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 30px;
+      margin-bottom: 33px;
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 23px 20px;
+      border-radius: 12px;
+      box-shadow: var(--box-shadow);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      min-height: 150px;
+      transition: box-shadow 0.22s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card i, .card a .fa-external-link-alt {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 9px;
+      transition: color 0.2s;
+      vertical-align: middle;
+    }
+    .card strong {
+      font-size: 1.16rem;
+      margin-bottom: 7px;
+      margin-top: 0;
+      font-weight: 700;
+    }
+    .card .desc {
+      font-size: 1.05rem;
+      color: var(--subtitle);
+      margin-bottom: 7px;
+      margin-top: 0;
+      font-weight: 400;
+    }
+    .card a {
+      background: var(--accent);
+      color: #1b1352;
+      text-decoration: none;
+      font-size: 1.03rem;
+      font-weight: bold;
+      padding: 10px 25px;
+      border-radius: 6px;
+      margin-top: 9px;
+      margin-bottom: 7px;
+      transition: background 0.18s, color 0.18s, box-shadow 0.19s;
+      box-shadow: 0 1px 7px #00c6ae30;
+      display: inline-block;
+    }
+    .card a:hover {
+      background: var(--hover-accent);
+      color: #2d1266;
+      box-shadow: 0 3px 18px #00c6ae70;
+      text-decoration: underline;
+    }
+    .card:hover {
+      transform: translateY(-5px) scale(1.025);
+      box-shadow: 0 7px 32px #13eed518;
+    }
+    /* Social media */
+    .social-block {
+      margin-bottom: 45px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
+    }
+    .social-block a {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      color: var(--primary-bg);
+      font-size: 1.25rem;
+      border-radius: 50px;
+      padding: 11px 22px 11px 15px;
+      margin-right: 5px;
+      transition: background 0.2s, color 0.22s, transform 0.15s;
+      box-shadow: 0 2px 9px #1b135263;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .social-block a i {
+      margin-right: 12px;
+      font-size: 1.38rem;
+      color: var(--accent);
+    }
+    .social-block a:hover {
+      background: var(--accent);
+      color: #1b1352;
+      transform: translateY(-2px) scale(1.04);
+    }
+    @media (max-width: 650px) {
+      .hero-title { font-size: 1.3rem;}
+      .container { margin-top: 14px;}
+      .hero-overlay { padding: 16px 3vw; width: 98vw;}
+      .section-title { font-size:1.2rem;}
+      nav {padding: 0 4px;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav>
+      <a href="#" class="logo">DATA SCIENTIST</a>
+      <div class="menu-links">
+        <a href="#about"><i class="fas fa-user"></i> About</a>
+        <a href="Final_resume.pdf"><i class="fas fa-file"></i> Resume</a>
+        <a href="#certificates"><i class="fas fa-certificate"></i> Certificates</a>
+        <a href="#projects"><i class="fas fa-chart-line"></i> Projects</a>
+        <a href="#social"><i class="fas fa-hashtag"></i> Social</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-overlay">
+      <div class="hero-title">VISHAL GANGWAR</div>
+      <div class="hero-desc">Data Scientist | Machine Learning and AI | Analytics Portfolio</div>
+      <a class="hero-btn" href="#projects"><i class="fas fa-arrow-right"></i> Explore Projects</a>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- About/Expertise Section -->
+    <div id="about">
+      <div class="section-title">WHAT I DO</div>
+      <div class="card-list">
+        <div class="card">
+          <i class="fas fa-database"></i>
+          <strong>Data Analysis & Visualization</strong>
+          <div class="desc">Advanced data processing, EDA, and visualization using Python, R, and BI tools.</div>
+        </div>
+        <div class="card">
+          <i class="fas fa-brain"></i>
+          <strong>Machine Learning & AI</strong>
+          <div class="desc">Building robust ML pipelines for real-world applications.</div>
+        </div>
+        <div class="card">
+          <i class="fas fa-project-diagram"></i>
+          <strong>End-to-End Projects</strong>
+          <div class="desc">From problem definition to production deployment and monitoring.</div>
+        </div>
+        <div class="card">
+          <i class="fas fa-chalkboard-teacher"></i>
+          <strong>Presentations & Stakeholder Insights</strong>
+          <div class="desc">Translating data findings for technical and non-technical teams.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resume Section -->
+    <div id="resume">
+      <div class="section-title">RESUME</div>
+      <div class="card-list">
+        <div class="card">
+          <i class="fas fa-file-pdf"></i>
+          <strong>Download My Resume</strong>
+          <div class="desc">Get my complete resume in PDF format. Updated for interviews and applications.</div>
+          <a href="Final_resume.pdf" download><i class="fas fa-file-download"></i> Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Certificates Section with PDF download -->
+    <div id="certificates">
+      <div class="section-title">CERTIFICATES</div>
+      <div class="card-list">
+        <div class="card">
+          <i class="fas fa-certificate"></i>
+          <strong>Python 101</strong>
+          <div class="desc">Issued by IBM Developer Skills Network</div>
+          <a href="pyhton_datascience.pdf" download><i class="fas fa-file-pdf"></i> Download PDF</a>
+        </div>
+        <div class="card">
+          <i class="fas fa-certificate"></i>
+          <strong>Data Science Specialization</strong>
+          <div class="desc">Issued by CodeTech IT Solution Pvt LTD</div>
+          <a href="DataScience_interenship.pdf" download><i class="fas fa-file-pdf"></i> Download PDF</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projects Section with links -->
+    <div id="projects">
+      <div class="section-title">PROJECTS</div>
+      <div class="card-list">
+        <div class="card">
+          <i class="fas fa-project-diagram"></i>
+          <strong>Bangalore House Price Pridiction</strong>
+          <div class="desc">ML pipeline (Python, scikit-learn, Flask) | Classification, dashboard, deployed on Github</div>
+          <a href="https://github.com/Vishal4664-web/Bangalore_House_Price_Pridiction" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+        </div>
+        <div class="card">
+          <i class="fas fa-project-diagram"></i>
+          <strong>Olmpics Games Analysis</strong>
+          <div class="desc">Streamlit Backend & ML/DL: Python, Pandas, NumPy, Scikit-learn, TensorFlow/Keras. Visualization: Matplotlib, Seaborn, Plotly.</div>
+          <a href="https://github.com/Vishal4664-web/Olmpic_Games_Analysis" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Media Block -->
+    <div id="social">
+      <div class="section-title">SOCIAL MEDIA</div>
+      <div class="social-block">
+        <a href="https://www.linkedin.com/in/vishal-gangwar-883953252?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/Vishal4664-web" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        <a href="mailto:vishalgangwar4664@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+      </div>
+    </div>
+
+    <!-- Contact -->
+    <div id="contact">
+      <div class="section-title">CONTACT</div>
+      <div style="color:var(--subtitle);font-size:1.08rem;margin-top:8px;">
+        Email: <a style="color:var(--accent);" href="mailto:vishalgangwar4664@gmail.com">vishalgangwar4664@gmail.com</a> &nbsp;|&nbsp; Phone: +91-7906964664
+      </div>
+    </div>
+  </div>
+</body>
+</html>
